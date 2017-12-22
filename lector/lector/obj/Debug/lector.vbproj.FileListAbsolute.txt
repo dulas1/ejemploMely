@@ -1,0 +1,18 @@
+c:\users\melisa\documents\visual studio 2015\Projects\lector\lector\bin\Debug\lector.exe.config
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\lector.exe.config
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\lector.exe
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\lector.pdb
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\lector.xml
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPDevNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPShrNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.vbprojResolveAssemblyReference.cache
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.Form1.resources
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.Resources.resources
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.vbproj.GenerateResource.Cache
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.exe
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.xml
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.pdb
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPCtlXWrapperNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPEngNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPGuiNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPVerNET.dll
