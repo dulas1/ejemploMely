@@ -162,4 +162,15 @@ Public Class Form1
     Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles txtMovil.TextChanged
 
     End Sub
+
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        conecta()
+        sql = "SELECT id FROM nombres WHERE id ='" &
+        Dim siExiste As Integer = existe(sql)
+        If siExiste <= 1 Then
+            MsgBox("Persona ya Registrada")
+        Else
+            sql = "INSERT INTO nombres (nombre,) VALUES ('" & txtNombre.Text & "')"
+        End If
+    End Sub
 End Class
