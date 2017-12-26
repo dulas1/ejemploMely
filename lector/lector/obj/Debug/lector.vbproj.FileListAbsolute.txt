@@ -16,3 +16,6 @@ C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFP
 C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPEngNET.dll
 C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPGuiNET.dll
 C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\DPFPVerNET.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\MySql.Data.dll
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\bin\Debug\MySql.Data.xml
+C:\Users\Melisa\Documents\saludComeCaca\ejemploMely\lector\lector\obj\Debug\lector.busqueda.resources
