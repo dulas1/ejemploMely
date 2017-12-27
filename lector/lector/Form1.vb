@@ -2,6 +2,7 @@
 Imports DPFP.Capture
 Imports System.Text
 Imports System.IO
+Imports MySql.Data.MySqlClient
 Public Class Form1
 
     Implements DPFP.Capture.EventHandler
@@ -134,8 +135,7 @@ Public Class Form1
                     Case DPFP.Processing.Enrollment.Status.Ready
                         template = Enroller.Template
                         paraCaptura()
-                        btnGuardar.Enabled = True
-                        txtNombre.Enabled = True
+                        modificarControles()
                     Case DPFP.Processing.Enrollment.Status.Failed
                         Enroller.Clear()
                         paraCaptura()
@@ -156,20 +156,23 @@ Public Class Form1
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-        conecta()
-
-        sql = "SELECT id FROM nombres WHERE id ='" & txtNombre.Text & "'"
-        Dim siExiste As Integer = existe(sql)
-        If siExiste >= 1 Then
-            MsgBox("Persona ya Registrada")
+        Dim builderconex As New MySqlConnectionStringBuilder()
+        builderconex.Server = "localhost"
+        builderconex.UserID = "root"
+        builderconex.Password = "root"
+        builderconex.Database = "personas"
+        Dim conexion As New MySqlConnection(builderconex.ToString())
+        conexion.Open()
+        Dim cmd As New MySqlCommand()
+        cmd = conexion.CreateCommand
+        If (txtNombre.Text.ToString().Equals("")) Then
+            MessageBox.Show("Debe esta lleno el campo Nombre")
         Else
-            cmd.CommandText = "INSERT INTO nombres(huella,nombre) VALUES(?,?)"
+            cmd.CommandText = "INSERT INTO nombres(huella,nombre) VALUES (?,?)"
             Using fm As New MemoryStream(template.Bytes)
                 cmd.Parameters.AddWithValue("huella", fm.ToArray())
             End Using
-            cmd.Parameters.AddWithValue("nombre", txtNombre.Text.ToString)
-
-            inserta(sql)
+            cmd.Parameters.AddWithValue("nombre", txtNombre.Text.ToString())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
             conexion.Close()
@@ -182,7 +185,7 @@ Public Class Form1
             paraCaptura()
             iniciarCaptura()
         End If
-        desconecta()
+
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click

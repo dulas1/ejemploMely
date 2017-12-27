@@ -9,13 +9,13 @@ Public Class busqueda
     Implements DPFP.Capture.EventHandler
     Private template As DPFP.Template
     Private captura As DPFP.Capture.Capture
-    Private verificacion As DPFP.Verification.Verification
+    Private verificador As DPFP.Verification.Verification
     Protected Overridable Sub Init()
         Try
             captura = New Capture
             If Not captura Is Nothing Then
                 captura.EventHandler = Me
-                verificacion = New Verification.Verification()
+                verificador = New Verification.Verification()
                 template = New Template()
             Else
                 MessageBox.Show("No se pudo instanciar la captura")
@@ -63,12 +63,18 @@ Public Class busqueda
         End If
     End Function
     Public Sub OnComplete(Capture As Object, ReaderSerialNumber As String, Sample As Sample) Implements EventHandler.OnComplete
-        conecta()
         ponerImagen(convetirSampleMapaBits(Sample))
         Dim caracteristicas As DPFP.FeatureSet = extraerCaracteristicas(Sample, DPFP.Processing.DataPurpose.Verification)
         If Not caracteristicas Is Nothing Then
             Dim result As New DPFP.Verification.Verification.Result()
             Dim builderconex As New MySqlConnectionStringBuilder()
+            builderconex.Server = "localhost"
+            builderconex.UserID = "root"
+            builderconex.Password = "root"
+            builderconex.Database = "personas"
+            Dim conexion As New MySqlConnection(builderconex.ToString())
+            conexion.Open()
+            Dim cmd As New MySqlCommand()
             cmd = conexion.CreateCommand
             cmd.CommandText = "SELECT * FROM nombres"
             Dim read As MySqlDataReader
@@ -78,7 +84,7 @@ Public Class busqueda
             While (read.Read())
                 Dim memoria As New MemoryStream(CType(read("huella"), Byte()))
                 template.DeSerialize(memoria.ToArray())
-                verificacion.Verify(caracteristicas, template, result)
+                verificador.Verify(caracteristicas, template, result)
                 If (result.Verified) Then
                     nombre = read("nombre")
                     verificado = True
