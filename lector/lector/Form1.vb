@@ -154,6 +154,29 @@ Public Class Form1
     Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
+    Public Function existe(ByRef SQL As String) As Integer
+        Dim builderconex As New MySqlConnectionStringBuilder()
+        builderconex.Server = "localhost"
+        builderconex.UserID = "root"
+        builderconex.Password = "root"
+        builderconex.Database = "personas"
+        Dim conexion As New MySqlConnection(builderconex.ToString())
+        conexion.Open()
+        Dim read As MySqlDataReader
+        Try
+            Dim cmd As New MySqlCommand(SQL, conexion)
+            read = cmd.ExecuteReader()
+            While read.Read()
+                existe = Integer.Parse(read("id"))
+                Exit While
+            End While
+            read.Close()
+            Return existe
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        conexion.Close()
+    End Function
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Dim builderconex As New MySqlConnectionStringBuilder()
@@ -165,8 +188,11 @@ Public Class Form1
         conexion.Open()
         Dim cmd As New MySqlCommand()
         cmd = conexion.CreateCommand
-        If (txtNombre.Text.ToString().Equals("")) Then
-            MessageBox.Show("Debe esta lleno el campo Nombre")
+        Dim exis As Integer
+        exis = cmd.CommandText = "SELECT id FROM nombres WHERE nombre='" & txtNombre.Text & "'"
+        Dim siExiste As Integer = existe(exis)
+        If siExiste >= 1 Then
+            MessageBox.Show("ya existe una persona registrada con ese nombre")
         Else
             cmd.CommandText = "INSERT INTO nombres(huella,nombre) VALUES (?,?)"
             Using fm As New MemoryStream(template.Bytes)
