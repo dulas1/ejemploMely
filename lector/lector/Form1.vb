@@ -4,6 +4,7 @@ Imports System.Text
 Imports System.IO
 Imports MySql.Data.MySqlClient
 Public Class Form1
+    'al tener una funcion ya no es necesario volver a asignarselo al commandText'
 
     Implements DPFP.Capture.EventHandler
     Private captura As DPFP.Capture.Capture
@@ -174,8 +175,9 @@ Public Class Form1
             Return existe
         Catch ex As Exception
             Return Nothing
+            MsgBox("el dato ya existe en la base de datos")
         End Try
-        conexion.Close()
+
     End Function
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
@@ -188,8 +190,8 @@ Public Class Form1
         conexion.Open()
         Dim cmd As New MySqlCommand()
         cmd = conexion.CreateCommand
-        Dim exis As Integer
-        exis = cmd.CommandText = "SELECT id FROM nombres WHERE nombre='" & txtNombre.Text & "'"
+        Dim exis As String
+        exis = "SELECT id FROM nombres WHERE nombre='" & txtNombre.Text & "'"
         Dim siExiste As Integer = existe(exis)
         If siExiste >= 1 Then
             MessageBox.Show("ya existe una persona registrada con ese nombre")
